@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
+Route::get('/', 'DefaultController@index')->name('main');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/{url}', ['name'=>'all', 'uses'=>'\App\Http\Controllers\DefaultController@all'])->where('url', '[a-zA-Z0-9-/]+');
+
